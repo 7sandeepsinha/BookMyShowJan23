@@ -54,5 +54,3 @@ Feature:
 // Auditorium
 // Seat
 // Show
-
-// Break till 10:42 PM

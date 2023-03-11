@@ -7,7 +7,7 @@ sandeep=# create database DBNAME;
 CREATE DATABASE
 sandeep=# create user USERNAME;
 CREATE ROLE
-sandeep=# grant all privileges on database scaler_july22 to july22batch;
+sandeep=# grant all privileges on database DBNAME to USERNAME;
 GRANT
 sandeep=#
 ```

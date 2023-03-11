@@ -1,15 +1,15 @@
 ```bash
-namanbhalla@Namans-Scaler-MacbookM1Pro-16 ~ % psql
+sandeep@Namans-Scaler-MacbookM1Pro-16 ~ % psql
 psql (14.1)
 Type "help" for help.
 
-namanbhalla=# create database scaler_july22_bookmyshow;
+sandeep=# create database DBNAME;
 CREATE DATABASE
-namanbhalla=# create user july22batch;
+sandeep=# create user USERNAME;
 CREATE ROLE
-namanbhalla=# grant all privileges on database scaler_july22 to july22batch;
+sandeep=# grant all privileges on database scaler_july22 to july22batch;
 GRANT
-namanbhalla=#
+sandeep=#
 ```
 
 

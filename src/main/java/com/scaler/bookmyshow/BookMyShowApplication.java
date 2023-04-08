@@ -85,7 +85,7 @@ public class BookMyShowApplication implements CommandLineRunner {
         TicketBookRunner ticketBookRunner1 = new TicketBookRunner(
                 this.ticketController,
                 3L,
-                List.of(58L, 59L, 60L),
+                List.of(61L, 62L, 63L),
                 1L
         );
 
@@ -95,10 +95,7 @@ public class BookMyShowApplication implements CommandLineRunner {
                 List.of(60L, 61L, 62L),
                 1L
         );
-//
-//        Thread t1 = new Thread(ticketBookRunner1);
-//        Thread t2 = new Thread(ticketBookRunner2);
-//        t1.start();
-//        t2.start();
+
+        ticketBookRunner1.run();
     }
 }

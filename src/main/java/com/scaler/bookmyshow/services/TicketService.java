@@ -33,13 +33,28 @@ public class TicketService {
     }
 
 
+    @Transactional(isolation = Isolation.SERIALIZABLE)
     public Ticket bookTicket(
             Long showId,
             List<Long> showSeatIds,
             Long userId
     ) throws ShowSeatNotAvailableException {
 
-        List<ShowSeat> showSeats = checkAvailabilityAndLock(showSeatIds);
+        //Fetch the given showSeats
+        List<ShowSeat> showSeats = showSeatRepository.findByIdIn(showSeatIds);
+
+        //check for availability
+        for(ShowSeat showSeat : showSeats){
+            if(!showSeat.getState().equals(ShowSeatState.AVAILABLE)){
+                throw new ShowSeatNotAvailableException("Show seat is not available : " + showSeat.getId());
+            }
+        }
+
+        //update the status to lock
+        for(ShowSeat showSeat : showSeats){
+            showSeat.setState(ShowSeatState.LOCKED);
+            showSeatRepository.save(showSeat);
+        }
 
         //wait for payment confirmation
         //assuming payment confirmation done
@@ -59,7 +74,7 @@ public class TicketService {
         return ticket;
     }
 
-    @Transactional(isolation = Isolation.SERIALIZABLE)
+
     private List<ShowSeat> checkAvailabilityAndLock(List<Long> showSeatIds) throws ShowSeatNotAvailableException {
         //Fetch the given showSeats
         List<ShowSeat> showSeats = showSeatRepository.findByIdIn(showSeatIds);

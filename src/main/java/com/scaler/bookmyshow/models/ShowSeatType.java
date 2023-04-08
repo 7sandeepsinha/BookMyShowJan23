@@ -1,6 +1,6 @@
 package com.scaler.bookmyshow.models;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 /**
  * For a show, for every seat type, what is the price for those seat

@@ -1,13 +1,15 @@
 package com.scaler.bookmyshow.models;
 
-import org.hibernate.annotations.Fetch;
-import org.springframework.data.repository.cdi.Eager;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.OneToMany;
+import lombok.Getter;
+import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
 import java.util.List;
 
+@Getter
+@Setter
 @Entity
 public class Theatre extends BaseModel {
     private String name;
@@ -22,37 +24,4 @@ public class Theatre extends BaseModel {
     // 1  :  1
     @OneToMany
     private List<Show> upcomingShows;
-
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public List<Auditorium> getAuditoriums() {
-        return auditoriums;
-    }
-
-    public void setAuditoriums(List<Auditorium> auditoriums) {
-        this.auditoriums = auditoriums;
-    }
-
-    public List<Show> getUpcomingShows() {
-        return upcomingShows;
-    }
-
-    public void setUpcomingShows(List<Show> upcomingShows) {
-        this.upcomingShows = upcomingShows;
-    }
 }

@@ -80,3 +80,5 @@ public class TicketService {
         return showSeats;
     }
 }
+
+// default isolation level for MySQL, PostGres SQL -> Repeatable Read.

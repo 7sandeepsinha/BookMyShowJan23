@@ -12,6 +12,6 @@ import java.util.List;
 public interface ShowSeatRepository
 extends JpaRepository<ShowSeat, Long> {
     @Lock(LockModeType.PESSIMISTIC_WRITE) // exclusive lock
-    List<ShowSeat> findByIdIn(List<Long> showSeatIds);
+    List<ShowSeat> findByIdIn(List<Long> showSeatIds); // select * from ShowSeatTable where id IN ();
     ShowSeat save(ShowSeat showSeat); //save means -> update and save, it will update an existing object or save a new object
 }

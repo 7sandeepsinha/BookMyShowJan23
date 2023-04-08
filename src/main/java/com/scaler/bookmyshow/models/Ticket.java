@@ -1,24 +1,40 @@
 package com.scaler.bookmyshow.models;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.Date;
 import java.util.List;
 
+@Getter
+@Setter
 @Entity
 public class Ticket extends BaseModel {
-    // 1 : 1
-    // m  :  1
+    // Ticket   User
+    //  1         1
+    //  M         1
     @ManyToOne
     private User bookedBy;
 
-    // 1 T : 1S
-    // M T    :  1S
+    // Ticket   Show
+    //    1       1
+    //    M       1
     @ManyToOne
     private Show show;
 
+    // 1 showSeat -> 1 seat in a particular show
+    // Can 1 show seat belong to many tickets -> Yes
+    // 1 ticket booked -> Seat 1
+    // ticket got cancelled
+    // another ticket booked -> Seat 1
+    // Seat 1 -> booked by tickets -> 2
+    // Can two active tickets book the same showSeat -> No
 
-    // 1 : M
-    // 1  : 1  // if no cancellation -> @OneToMany
+
+    // Ticket       ShowSeat
+    //  1               M
+    //  M               1
     @ManyToMany
     private List<ShowSeat> showSeats;
     private double totalAmount;
@@ -27,61 +43,6 @@ public class Ticket extends BaseModel {
 
     private Date timeOfBooking;
 
-    public Date getTimeOfBooking() {
-        return timeOfBooking;
-    }
-
-    public void setTimeOfBooking(Date timeOfBooking) {
-        this.timeOfBooking = timeOfBooking;
-    }
-
-    public User getBookedBy() {
-        return bookedBy;
-    }
-
-    public void setBookedBy(User bookedBy) {
-        this.bookedBy = bookedBy;
-    }
-
-    public Show getShow() {
-        return show;
-    }
-
-    public void setShow(Show show) {
-        this.show = show;
-    }
-
-    public List<ShowSeat> getShowSeats() {
-        return showSeats;
-    }
-
-    public void setShowSeats(List<ShowSeat> showSeats) {
-        this.showSeats = showSeats;
-    }
-
-    public double getTotalAmount() {
-        return totalAmount;
-    }
-
-    public void setTotalAmount(double totalAmount) {
-        this.totalAmount = totalAmount;
-    }
-
-    public TicketStatus getBookingStatus() {
-        return ticketStatus;
-    }
-
-    public void setBookingStatus(TicketStatus ticketStatus) {
-        this.ticketStatus = ticketStatus;
-    }
-
-    public TicketStatus getTicketStatus() {
-        return ticketStatus;
-    }
-
-    public void setTicketStatus(TicketStatus ticketStatus) {
-        this.ticketStatus = ticketStatus;
-    }
 }
 
 // if there is a conflict of booking, allow the request

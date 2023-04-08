@@ -1,8 +1,7 @@
 package com.scaler.bookmyshow.models;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "users")
@@ -18,4 +17,3 @@ public class User extends BaseModel {
     }
 }
 
-// Will be starting at 9:10 PM
